@@ -1,0 +1,22 @@
+{
+  "name": "abstractvm_unitest",
+  "version": "1.0.0",
+  "description": "test unitaire pour le projet abstractVM",
+  "main": "tests.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexpwf/abstractVM_unitest.git"
+  },
+  "author": "alex",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexpwf/abstractVM_unitest/issues"
+  },
+  "homepage": "https://github.com/alexpwf/abstractVM_unitest#readme",
+  "dependencies": {
+    "nodeunit": "^0.9.1"
+  }
+}
