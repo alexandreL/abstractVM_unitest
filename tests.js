@@ -11,8 +11,6 @@ var execParam = {
 }
 var stackProcess = []
 
-process.stdin.resume(); //so the program will not close instantly
-
 function exitHandler(options, err) {
     stackProcess.forEach(elem => {
         elem.kill("SIGINT")
