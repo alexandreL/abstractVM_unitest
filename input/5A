@@ -34,4 +34,16 @@ add
 dump
 clear
 
+push int8(1)
+push  bigdecimal(1.0)
+add
+dump
+clear
+
+push  bigdecimal(1.0)
+push int8(1)
+add
+dump
+clear
+
 exit
