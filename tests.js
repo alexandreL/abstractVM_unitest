@@ -25,21 +25,32 @@ process.on('SIGINT', exitHandler.bind())
 function execTest(test, file) {
     stackProcess.push(exec('./auto_copy/abstractVM ./input/' + file, execParam, function(err, stdout, stderr) {
         stackProcess.pop()
-        fs.readFile("./output/" + file, 'utf-8', function(errfile, data) {
-            var s1 = stdout.split('\n')
-            var s2 = data.split('\n')
-            for (var i = 0; i < s1.length && i < s2.length; i++) {
-                test.equal(s1[i], s2[i])
-            }
+        if (err) {
+            console.log('error exec: ' + err)
+            test.ok(false)
             test.done()
-        });
+        }
+        else if (stderr) {
+            console.log('err:' + stderr)
+            test.ok(false)
+            test.done()
+        }
+        else
+            fs.readFile("./output/" + file, 'utf-8', function(errfile, data) {
+                var s1 = stdout.split('\n')
+                var s2 = data.split('\n')
+                for (var i = 0; i < s1.length && i < s2.length; i++) {
+                    test.equal(s1[i], s2[i])
+                }
+                test.done()
+            });
     }))
 }
 
 module.exports = testCase({
     'Compile': testCase({
         'base': function(test) {
-            stackProcess.push(exec("make -C ./auto_copy/", function(err, stdout, stderr) {
+            stackProcess.push(exec("make re -C ./auto_copy/", function(err, stdout, stderr) {
                 stackProcess.pop()
                 if (stderr.length !== 0) {
                     console.log(stderr)
