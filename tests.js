@@ -25,10 +25,13 @@ process.on('SIGINT', exitHandler.bind())
 function execTest(test, file) {
     stackProcess.push(exec('./auto_copy/abstractVM ./input/' + file, execParam, function(err, stdout, stderr) {
         stackProcess.pop()
-        if (err && err.code === 84) {
-            console.log('error exec: ' + err)
-            test.ok(false)
+        if (err) {
+            if (err.code != 84)
+                test.ok(false, err + 'signal: ' + err.signal)
+            else
+                test.ok(false, err + 'code de sortie: ' + err.code)
             test.done()
+            return
         }
         if (stderr) {
             console.log('err:' + stderr)
