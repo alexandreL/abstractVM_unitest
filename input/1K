@@ -1,1 +1,5 @@
+push float (32.0)
+push float(0.0)
+mod
 exit
+;;

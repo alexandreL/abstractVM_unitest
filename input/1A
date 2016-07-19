@@ -1,1 +1,4 @@
+push int32(32) 
+assert double(42.42)
 exit
+;;
