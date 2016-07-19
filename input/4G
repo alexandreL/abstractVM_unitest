@@ -1,6 +1,6 @@
 push double(566.0)
 push int16(2443)
-push int16(5)
+push double(5)
 div
 sub
 dup
