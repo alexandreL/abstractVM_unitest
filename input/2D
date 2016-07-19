@@ -1,1 +1,7 @@
+push int32(183)
+push int32(32000)
+push int32(600)
+add
+add
+dump
 exit

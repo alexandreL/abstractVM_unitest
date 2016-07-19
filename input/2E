@@ -1,1 +1,5 @@
+push int32(1757)
+push int32(656)
+sub
+dump
 exit
