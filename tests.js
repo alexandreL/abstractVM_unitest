@@ -25,17 +25,14 @@ process.on('SIGINT', exitHandler.bind())
 function execTest(test, file) {
     stackProcess.push(exec('./auto_copy/abstractVM ./input/' + file, execParam, function(err, stdout, stderr) {
         stackProcess.pop()
-        if (err) {
+        if (err && err.code === 84) {
             console.log('error exec: ' + err)
             test.ok(false)
             test.done()
         }
-        else if (stderr) {
+        if (stderr) {
             console.log('err:' + stderr)
-            test.ok(false)
-            test.done()
         }
-        else
             fs.readFile("./output/" + file, 'utf-8', function(errfile, data) {
                 var s1 = stdout.split('\n')
                 var s2 = data.split('\n')
