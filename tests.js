@@ -25,25 +25,25 @@ process.on('SIGINT', exitHandler.bind())
 function execTest(test, file) {
     stackProcess.push(exec('./auto_copy/abstractVM ./input/' + file, execParam, function(err, stdout, stderr) {
         stackProcess.pop()
+        if (stderr) {
+            console.log('err:' + stderr)
+        }
         if (err) {
             if (err.code != 84)
                 test.ok(false, err + 'signal: ' + err.signal)
             else
-                test.ok(false, err + 'code de sortie: ' + err.code)
+                test.ok(true, err + 'code de sortie: ' + err.code)
             test.done()
             return
         }
-        if (stderr) {
-            console.log('err:' + stderr)
-        }
-            fs.readFile("./output/" + file, 'utf-8', function(errfile, data) {
-                var s1 = stdout.split('\n')
-                var s2 = data.split('\n')
-                for (var i = 0; i < s1.length && i < s2.length; i++) {
-                    test.equal(s1[i], s2[i])
-                }
-                test.done()
-            });
+        fs.readFile("./output/" + file, 'utf-8', function(errfile, data) {
+            var s1 = stdout.split('\n')
+            var s2 = data.split('\n')
+            for (var i = 0; i < s1.length && i < s2.length; i++) {
+                test.equal(s1[i], s2[i])
+            }
+            test.done()
+        });
     }))
 }
 
