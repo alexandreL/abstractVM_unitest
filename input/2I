@@ -1,1 +1,5 @@
+push double(1997)
+push double(34.230021632)
+div
+dump
 exit
