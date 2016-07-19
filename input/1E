@@ -1,1 +1,4 @@
+push float2(44.55)
+push double(44.5.5)
 exit
+;;
