@@ -199,25 +199,25 @@ module.exports = testCase({
         }
     }),
     'Advanced': testCase({
-        '4A': function(test) {
+        '2 * 1 + 3': function(test) {
             execTest(test, '4A')
         },
-        '4B': function(test) {
+        '6*(4+5) - 25/(2+3)': function(test) {
             execTest(test, '4B')
         },
-        '4C': function(test) {
+        '(42 + 33) * 44.55; 42.42; 42': function(test) {
             execTest(test, '4C')
         },
-        '4D': function(test) {
+        '(256 * 34 + 21) * (344 + 12 + 23)': function(test) {
             execTest(test, '4D')
         },
-        '4E': function(test) {
+        '(256 + 34 * 21) + (344 + 12 + 23)²': function(test) {
             execTest(test, '4E')
         },
-        '4F': function(test) {
+        '(2.56 + 34 * 21.4) * (0.344 + 12 + 23)²': function(test) {
             execTest(test, '4F')
         },
-        '4G': function(test) {
+        '(566.0 - 2443 / 5)^3': function(test) {
             execTest(test, '4G')
         }
     }),

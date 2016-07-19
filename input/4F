@@ -1,1 +1,15 @@
+push double(2.56)
+push int8(34)
+push double(21.4)
+mul
+add
+push double(0.344)
+push int8(12)
+push int8(23)
+add
+add
+dup
+mul
+mul
+dump
 exit
