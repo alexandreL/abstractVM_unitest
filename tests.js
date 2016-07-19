@@ -22,17 +22,23 @@ process.on('exit', exitHandler.bind())
 //catches ctrl+c event
 process.on('SIGINT', exitHandler.bind())
 
-function execTest(test, file) {
+function execTest(test, file, neederr = false) {
     stackProcess.push(exec('./auto_copy/abstractVM ./input/' + file, execParam, function(err, stdout, stderr) {
         stackProcess.pop()
         if (stderr) {
             console.log('err:' + stderr)
         }
         if (err) {
-            if (err.code != 84)
+            if (err.code != 84) {
                 test.ok(false, err + 'signal: ' + err.signal)
-            else
-                test.ok(true, err + 'code de sortie: ' + err.code)
+            }
+            else {
+                if (neederr) {
+                    test.ok(false, err + 'code de sortie: ' + err.code)
+                } else {
+                    test.ok(true, err + 'code de sortie: ' + err.code)
+                }
+            }
             test.done()
             return
         }
@@ -49,7 +55,7 @@ function execTest(test, file) {
 
 module.exports = testCase({
     'Compile': testCase({
-        'base': function(test) {
+        'base': function( test ) {
             stackProcess.push(exec("make re -C ./auto_copy/", function(err, stdout, stderr) {
                 stackProcess.pop()
                 if (stderr.length !== 0) {
@@ -64,225 +70,225 @@ module.exports = testCase({
         }
     }),
     'Error Management': testCase({
-        'Assert': function(test) {
+        '1A - Assert': function(test) {
             execTest(test, '1A')
         },
-        'Divide By Zero': function(test) {
+        '1B - Divide By Zero': function(test) {
             execTest(test, '1B')
         },
-        'Empty Stack': function(test) {
+        '1C - Empty Stack': function(test) {
             execTest(test, '1C')
         },
-        'Missing Exit': function(test) {
+        '1D - Missing Exit': function(test) {
             execTest(test, '1D')
         },
-        'Lexical Error': function(test) {
+        '1E - Lexical Error': function(test) {
             execTest(test, '1E')
         },
-        'Lexical Error Simple #2': function(test) {
+        '1F - Lexical Error Simple #2': function(test) {
             execTest(test, '1F')
         },
-        'Lexical Error Simple': function(test) {
+        '1G - Lexical Error Simple': function(test) {
             execTest(test, '1G')
         },
-        'Modulo BigDecimal': function(test) {
+        '1H - Modulo BigDecimal': function(test) {
             execTest(test, '1H')
         },
-        'Modulo By Zero': function(test) {
+        '1I - Modulo By Zero': function(test) {
             execTest(test, '1I')
         },
-        'Modulo Double': function(test) {
+        '1J - Modulo Double': function(test) {
             execTest(test, '1J')
         },
-        'Modulo Float': function(test) {
+        '1K - Modulo Float': function(test) {
             execTest(test, '1K')
         },
-        'Not enough Values': function(test) {
+        '1L - Not enough Values': function(test) {
             execTest(test, '1L')
         },
-        'Overflow #2': function(test) {
+        '1M - Overflow #2': function(test) {
             execTest(test, '1M')
         },
-        'Overflow': function(test) {
+        '1N - Overflow': function(test) {
             execTest(test, '1N')
         },
-        'Underflow #2': function(test) {
+        '1O - Underflow #2': function(test) {
             execTest(test, '1O')
         },
-        'Underflow': function(test) {
+        '1P - Underflow': function(test) {
             execTest(test, '1P')
         },
-        'Unknown Instruction': function(test) {
+        '1Q - Unknown Instruction': function(test) {
             execTest(test, '1Q')
         }
     }),
     'Unit Tests': testCase({
-        'Assert': function(test) {
+        '2A - Assert': function(test) {
             execTest(test, '2A')
         },
-        'Add': function(test) {
+        '2B - Add': function(test) {
             execTest(test, '2B')
         },
-        'Add #2': function(test) {
+        '2C - Add #2': function(test) {
             execTest(test, '2C')
         },
-        'Add #3': function(test) {
+        '2D - Add #3': function(test) {
             execTest(test, '2D')
         },
-        'Sub': function(test) {
+        '2E - Sub': function(test) {
             execTest(test, '2E')
         },
-        'Sub #2': function(test) {
+        '2F - Sub #2': function(test) {
             execTest(test, '2F')
         },
-        'Sub #3': function(test) {
+        '2G - Sub #3': function(test) {
             execTest(test, '2G')
         },
-        'Div': function(test) {
+        '2H - Div': function(test) {
             execTest(test, '2H')
         },
-        'Div #2': function(test) {
+        '2I - Div #2': function(test) {
             execTest(test, '2I')
         },
-        'Div #3': function(test) {
+        '2J - Div #3': function(test) {
             execTest(test, '2J')
         },
-        'Mod': function(test) {
+        '2K - Mod': function(test) {
             execTest(test, '2K')
         },
-        'Mod #2': function(test) {
+        '2L - Mod #2': function(test) {
             execTest(test, '2L')
         },
-        'Mul': function(test) {
+        '2M - Mul': function(test) {
             execTest(test, '2M')
         },
-        'Mul #2': function(test) {
+        '2N - Mul #2': function(test) {
             execTest(test, '2N')
         },
-        'Dup': function(test) {
+        '2O - Dup': function(test) {
             execTest(test, '2O')
         },
-        'Pop': function(test) {
+        '2P - Pop': function(test) {
             execTest(test, '2P')
         },
-        'Print': function(test) {
+        '2Q - Print': function(test) {
             execTest(test, '2Q')
         },
-        'Push': function(test) {
+        '2R - Push': function(test) {
             execTest(test, '2R')
         },
-        'Swap': function(test) {
+        '2S - Swap': function(test) {
             execTest(test, '2S')
         },
-        'Clear': function(test) {
+        '2T - Clear': function(test) {
             execTest(test, '2T')
         },
-        'Clear #2': function(test) {
+        '2U - Clear #2': function(test) {
             execTest(test, '2U')
         }
     }),
     'Parsing': testCase({
-        'Comment': function(test) {
+        '3A - Comment': function(test) {
             execTest(test, '3A')
         },
-        'Inline comment': function(test) {
+        '3B - Inline comment': function(test) {
             execTest(test, '3B')
         },
-        'Space': function(test) {
+        '3C - Space': function(test) {
             execTest(test, '3C')
         },
-        'Tab & Space': function(test) {
+        '3D - Tab & Space': function(test) {
             execTest(test, '3D')
         },
-        'Tab': function(test) {
+        '3E - Tab': function(test) {
             execTest(test, '3E')
         }
     }),
     'Advanced': testCase({
-        '2 * 1 + 3': function(test) {
+        '4A - 2 * 1 + 3': function(test) {
             execTest(test, '4A')
         },
-        '6*(4+5) - 25/(2+3)': function(test) {
+        '4B - 6*(4+5) - 25/(2+3)': function(test) {
             execTest(test, '4B')
         },
-        '(42 + 33) * 44.55; 42.42; 42': function(test) {
+        '4C - (42 + 33) * 44.55; 42.42; 42': function(test) {
             execTest(test, '4C')
         },
-        '(256 * 34 + 21) * (344 + 12 + 23)': function(test) {
+        '4D - (256 * 34 + 21) * (344 + 12 + 23)': function(test) {
             execTest(test, '4D')
         },
-        '(256 + 34 * 21) + (344 + 12 + 23)²': function(test) {
+        '4E - (256 + 34 * 21) + (344 + 12 + 23)²': function(test) {
             execTest(test, '4E')
         },
-        '(2.56 + 34 * 21.4) * (0.344 + 12 + 23)²': function(test) {
+        '4F - (2.56 + 34 * 21.4) * (0.344 + 12 + 23)²': function(test) {
             execTest(test, '4F')
         },
-        '(566.0 - 2443 / 5)^3': function(test) {
+        '4G - (566.0 - 2443 / 5)^3': function(test) {
             execTest(test, '4G')
         }
     }),
     'BigDecimal': testCase({
-        'Add': function(test) {
+        '5A - Add': function(test) {
             execTest(test, '5A')
 
         },
-        'Add #2': function(test) {
+        '5B - Add #2': function(test) {
             execTest(test, '5B')
 
         },
-        'Sub': function(test) {
+        '5C - Sub': function(test) {
             execTest(test, '5C')
 
         },
-        'Sub #2': function(test) {
+        '5D - Sub #2': function(test) {
             execTest(test, '5D')
 
         },
-        'Div': function(test) {
+        '5E - Div': function(test) {
             execTest(test, '5E')
 
         },
-        'Mul': function(test) {
+        '5F - Mul': function(test) {
             execTest(test, '5F')
 
         },
-        'BigF': function(test) {
+        '5G - BigF': function(test) {
             execTest(test, '5G')
 
         },
-        'BigG': function(test) {
+        '5H - BigG': function(test) {
             execTest(test, '5H')
 
         }
     }),
     'Registers': testCase({
-        'Load & Store': function(test) {
+        '6A - Load & Store': function(test) {
             execTest(test, '6A')
         },
-        'Load': function(test) {
+        '6B - Load': function(test) {
             execTest(test, '6B')
         },
-        'Load Empty': function(test) {
+        '6C - Load Empty': function(test) {
             execTest(test, '6C')
         },
-        'Store': function(test) {
+        '6D - Store': function(test) {
             execTest(test, '6D')
         },
-        'Store #2': function(test) {
+        '6E - Store #2': function(test) {
             execTest(test, '6E')
         }
     }),
     'Type Cascading': testCase({
-        'Add int16': function(test) {
+        '7A - Add int16': function(test) {
             execTest(test, '7A')
         },
-        'Add int8': function(test) {
+        '7B - Add int8': function(test) {
             execTest(test, '7B')
         },
-        'Div': function(test) {
+        '7C - Div': function(test) {
             execTest(test, '7C')
         },
-        'Mul': function(test) {
+        '7D - Mul': function(test) {
             execTest(test, '7D')
         }
     })
