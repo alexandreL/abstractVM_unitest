@@ -1,1 +1,8 @@
+push int32(234)
+push int32(66)
+store int8(1)
+store int8(2)
+load int8(1)
+load int8(2)
+dump
 exit
