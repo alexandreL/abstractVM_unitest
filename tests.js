@@ -28,17 +28,24 @@ function execTest(test, file, neederr = false) {
         if (stderr) {
             console.log('err:' + stderr)
         }
+        if (neederr) {
+
+        }
         if (err) {
             if (err.code != 84) {
                 test.ok(false, err + 'signal: ' + err.signal)
             }
             else {
                 if (neederr) {
-                    test.ok(false, err + 'code de sortie: ' + err.code)
-                } else {
                     test.ok(true, err + 'code de sortie: ' + err.code)
+                } else {
+                    test.ok(false, err + 'code de sortie: ' + err.code)
                 }
             }
+            test.done()
+            return
+        } else if (neederr) {
+            test.ok(false, 'you need to exit 84')
             test.done()
             return
         }
@@ -71,55 +78,55 @@ module.exports = testCase({
     }),
     'Error Management': testCase({
         '1A - Assert': function(test) {
-            execTest(test, '1A')
+            execTest(test, '1A', true)
         },
         '1B - Divide By Zero': function(test) {
-            execTest(test, '1B')
+            execTest(test, '1B', true)
         },
         '1C - Empty Stack': function(test) {
-            execTest(test, '1C')
+            execTest(test, '1C', true)
         },
         '1D - Missing Exit': function(test) {
-            execTest(test, '1D')
+            execTest(test, '1D', true)
         },
         '1E - Lexical Error': function(test) {
-            execTest(test, '1E')
+            execTest(test, '1E', true)
         },
         '1F - Lexical Error Simple #2': function(test) {
-            execTest(test, '1F')
+            execTest(test, '1F', true)
         },
         '1G - Lexical Error Simple': function(test) {
-            execTest(test, '1G')
+            execTest(test, '1G', true)
         },
         '1H - Modulo BigDecimal': function(test) {
-            execTest(test, '1H')
+            execTest(test, '1H', true)
         },
         '1I - Modulo By Zero': function(test) {
-            execTest(test, '1I')
+            execTest(test, '1I', true)
         },
         '1J - Modulo Double': function(test) {
-            execTest(test, '1J')
+            execTest(test, '1J', true)
         },
         '1K - Modulo Float': function(test) {
-            execTest(test, '1K')
+            execTest(test, '1K', true)
         },
         '1L - Not enough Values': function(test) {
-            execTest(test, '1L')
+            execTest(test, '1L', true)
         },
         '1M - Overflow #2': function(test) {
-            execTest(test, '1M')
+            execTest(test, '1M', true)
         },
         '1N - Overflow': function(test) {
-            execTest(test, '1N')
+            execTest(test, '1N', true)
         },
         '1O - Underflow #2': function(test) {
-            execTest(test, '1O')
+            execTest(test, '1O', true)
         },
         '1P - Underflow': function(test) {
-            execTest(test, '1P')
+            execTest(test, '1P', true)
         },
         '1Q - Unknown Instruction': function(test) {
-            execTest(test, '1Q')
+            execTest(test, '1Q', true)
         }
     }),
     'Unit Tests': testCase({
@@ -127,7 +134,7 @@ module.exports = testCase({
             execTest(test, '2A')
         },
         '2B - Add': function(test) {
-            execTest(test, '2B')
+            execTest(test, '2B', true)
         },
         '2C - Add #2': function(test) {
             execTest(test, '2C')
@@ -269,7 +276,7 @@ module.exports = testCase({
             execTest(test, '6B')
         },
         '6C - Load Empty': function(test) {
-            execTest(test, '6C')
+            execTest(test, '6C', true)
         },
         '6D - Store': function(test) {
             execTest(test, '6D')
@@ -280,7 +287,7 @@ module.exports = testCase({
     }),
     'Type Cascading': testCase({
         '7A - Add int16': function(test) {
-            execTest(test, '7A')
+            execTest(test, '7A', true)
         },
         '7B - Add int8': function(test) {
             execTest(test, '7B')
