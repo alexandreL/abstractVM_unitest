@@ -1,1 +1,6 @@
+push int16(32783)
+push int16(32600)
+add
+dump
 exit
+;;

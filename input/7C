@@ -1,1 +1,6 @@
+push double(178.689)
+push int16(32700)
+div
+dump
 exit
+;;

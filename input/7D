@@ -1,1 +1,6 @@
+push double(0.327)
+push int16(32700)
+mul
+dump
 exit
+;;

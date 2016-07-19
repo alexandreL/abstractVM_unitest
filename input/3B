@@ -1,1 +1,5 @@
-exit
+push         int32(1808)
+push    int32(0)
+add  		   ;  	+
+assert  int32(1808)
+exit      
