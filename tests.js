@@ -28,9 +28,6 @@ function execTest(test, file, neederr = false) {
         if (stderr) {
             console.log('err:' + stderr)
         }
-        if (neederr) {
-
-        }
         if (err) {
             if (err.code != 84) {
                 test.ok(false, err + 'signal: ' + err.signal)
