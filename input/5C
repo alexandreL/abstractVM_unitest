@@ -1,1 +1,21 @@
+push bigdecimal(18)
+push bigdecimal(24)
+sub
+dump
+clear
+push bigdecimal(-18)
+push bigdecimal(-24)
+sub
+dump
+clear
+push bigdecimal(-18)
+push bigdecimal(24)
+sub
+dump
+clear
+push bigdecimal(18)
+push bigdecimal(-24)
+sub
+dump
+clear
 exit

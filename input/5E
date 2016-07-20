@@ -1,1 +1,5 @@
+push bigdecimal(18)
+push bigdecimal(18)
+div
+dump
 exit

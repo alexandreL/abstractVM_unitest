@@ -1,1 +1,31 @@
+push bigdecimal(2000.5)
+push bigdecimal(-0.60)
+add
+dump
+clear
+push bigdecimal(18)
+push int32(24)
+add
+dump
+clear
+push float(-18)
+push bigdecimal(-24)
+add
+dump
+clear
+push bigdecimal(-18)
+push double(24)
+add
+dump
+clear
+push bigdecimal(18)
+push bigdecimal(-24)
+add
+dump
+clear
+push double(5415745271468718714)
+push bigdecimal(0.0000000187222372624194896992122805894209623903953425064807024)
+;b = 5341242, 1/b = 0.0000000187222372624194896992122805894209623903953425064807024
+mul
+dump
 exit

@@ -6,7 +6,7 @@ const exec = require('child_process').exec;
 const fs = require('fs');
 var execParam = {
     encoding: 'utf8',
-    timeout: 5000, // 5s
+    timeout: 10000, // 5s
     killSignal: 'SIGINT',
 }
 var stackProcess = []
